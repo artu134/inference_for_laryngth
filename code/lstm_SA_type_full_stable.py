@@ -38,7 +38,7 @@ class LSTM_SA_Architecture():
                  constant_nfilters=True,
                  name=None,
                  verbose=False,
-                 two_gpus=True,
+                 two_gpus=False,
                  gru=False,
                  midseq=False):
         
