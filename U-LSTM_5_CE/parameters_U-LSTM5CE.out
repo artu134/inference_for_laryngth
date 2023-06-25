@@ -1,0 +1,106 @@
+                                                                                                                                                
+================
+== TensorFlow ==
+================
+
+NVIDIA Release 19.03 (build 5809531)
+TensorFlow Version 1.13.1
+
+Container image Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
+Copyright 2017-2018 The TensorFlow Authors.  All rights reserved.
+
+Various files include modifications (c) NVIDIA CORPORATION.  All rights reserved.
+NVIDIA modifications are covered by the license terms that apply to the underlying project or file.
+
+WARNING: The NVIDIA Driver was not detected.  GPU functionality will not be available.
+   Use 'nvidia-docker run' to start this container; see
+   https://github.com/NVIDIA/nvidia-docker/wiki/nvidia-docker .
+
+NOTE: MOFED driver for multi-node communication was not detected.
+      Multi-node communication performance may be reduced.
+
+unet_dyn-configuration:
+-----
+MODEL_INFO ./LSTMfull_L5_F64_LFsoftmax_Oadam_LR1.00E-04_C2_CWNone_DeRNone_BNTrue_RegNone_RegS1.00E-04_StdTrue_CCTrue_constFFalse_LSTMfull_rgb_nat_DR0.6_BS10_E40/
+-----
+xsize:  256,
+ysize:  256,
+ndimension:  3
+nfilters:  64
+reduced_nfilters:  None
+nlayers:  5
+nclasses:  4
+loss_function:  softmax
+optimizer:  adam
+class_weights:  None
+learning_rate:  0.0001
+decay_rate:  None
+bn:  True
+reg:  None
+reg_scale:  0.00001
+image_std:  False
+crop_concat:  True
+constant_nfilters:  False
+name:  LSTMfull_rgb_nat
+verbose:  False
+model:  20000
+image_suffix:  _rgb.png
+label_suffix:  _mask.png
+background:  True
+batch_size:  10
+epochs:  40
+run_mode(1:train, 0:test):  1
+sequence_length:  10
+sequence_length_mid:  2
+load_model_path:  None
+-----
+start training LSTMfull
+
+WARNING: The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+If you depend on functionality not listed there, please file an issue.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Done!
