@@ -596,7 +596,7 @@ class LSTM_SA_Tester():
             model_restore(sess, self._model_path)
             
             _runtime_t2 = time.time() # runtime
-            
+            print(f"dataset length: {self._dataprovider.dataset_length()}; Batch size : {batch_size}")
             for i in range(self._dataprovider.dataset_length() // batch_size):
                 
                 _runtime_t3 = time.time() # runtime
@@ -826,10 +826,10 @@ class LSTM_SA_Tester_MidSeq():
         logging.info("------------------------------------------------")
         logging.info("Runtime: Total Runtime: {:.4f}".format(_runtime_total))
         
-        path = self._output_path + "runtime.mat"
-        sio.savemat(path, {"lstm_sa_full_midseq_load_batch":_runtime_load_batch,
-                            "lstm_sa_full_midseq_feedforward_batch":_runtime_feedforward_batch,
-                            "lstm_sa_full_midseq_save_batch":_runtime_save_batch})
+        # path = self._output_path + "runtime.mat"
+        # sio.savemat(path, {"lstm_sa_full_midseq_load_batch":_runtime_load_batch,
+        #                     "lstm_sa_full_midseq_feedforward_batch":_runtime_feedforward_batch,
+        #                     "lstm_sa_full_midseq_save_batch":_runtime_save_batch})
                             
         perf = self._save_performance()
         logging.info(perf)

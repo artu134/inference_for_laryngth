@@ -35,7 +35,7 @@ if __name__ == '__main__':
     bs=10               # batch_size
     ep=40               # epochs
     seq_len=10          # sequence_length   
-    run_mode=1          # 1: train, 0:test
+    run_mode=0      # 1: train, 0:test
 
     # define paths to the dataset
     PATH_tain="../dataset/train/*.png"
@@ -140,9 +140,10 @@ if __name__ == '__main__':
     elif int(run_mode) == 0: # testing
         
         # define paths
-        #MODEL_PATH = str("./Training_Models/" + nm + "/LSTM_SA_L" + str(layer) + "_F" + str(nfil) + "_LF" + loss + "_O" + str(opt) + "_LR1.00E-04_C" + str(cl) + "_CW" + clw_str + "_DeR" + drate_str + "_BN" + str(bnorm) + "_Reg" + regu_str + "_RegS1.00E-05_Std" + imgstd + "_CC" + cc + "_constF" + cnfilt + "_" + nm + "_DR0.6_BS" + str(bs) + "_E" + str(ep) + "/model-" + str(md)) #Memo: DR0.6 ist die default droprate
-        #OUTPUT_PATH = str("./predictions/" + nm + "/" + nm + "_unet_" + str(layer) + "L_" + str(cl) + "C_" + loss + "_imgstd" + imgstd + "_CLW" + clw_str + "/model" + str(md) + "/")
-        MODEL_PATH = "./lstm_save/"
+        MODEL_PATH = str("./Training_Models/LSTMfull_rgb_nat/model_to_run/model-30000")  #Memo: DR0.6 ist die default droprate
+        # OUTPUT_PATH = str("./predictions/" + str(nm) + "/" + str(nm) + "_unet_" + str(layer) + "L_" + str(cl) + "C_" + str(loss)
+        #  + "_imgstd" + str(imgstd) + "_CLW" + str(clw_str) + "/model" + str(md) + "/")
+        # MODEL_PATH = "./lstm_save/"
         OUTPUT_PATH = "./predictions/"
         # load data
         data_test = SequenceDataProvider(PATH_test, image_suffix=str(imgsuf), label_suffix=None, nclasses=int(ncl_data), sequence_length=int(seq_len), background=bg, shuffle_data=False)
@@ -154,7 +155,7 @@ if __name__ == '__main__':
              
         # run tester to generate predictions
         tester = LSTM_SA_Tester(data_test, lstmnet, MODEL_PATH, OUTPUT_PATH)
-        tester.test(save_validate_image=False)
+        tester.test(save_validate_image=True)
                 
 
     else:
