@@ -30,7 +30,7 @@ class LSTM_SA_Tester:
 The final result of this class's operation is a set of images where each image shows the model's segmentation predictions overlaid on the original image, and another set of images where each image shows the raw segmentation mask predicted by the model. Additionally, a text file is generated that contains the overall performance of the model on the test data.
 
 
-# Understanding and Running the LSTM_SA_Tester Script
+# Understanding and Running the DEMO_run_U-LSTM_new Script
 
 The script presented above is a versatile utility for training and testing a long short-term memory (LSTM) deep learning model. It primarily relies on the following Python classes:
 
@@ -56,7 +56,5 @@ This is a stand-alone Python script, meaning it can be executed directly from th
 To run the script, navigate to the directory containing the script using the command line and type:
 
 ```python
-python lstm_tester_script.py
+python DEMO_run_U-LSTM_new.py
 ```
-
-Remember to replace `lstm_tester_script.py` with the actual name of your script. You need to have Python and all the necessary libraries (mentioned in the script) installed in your environment to run the script.
