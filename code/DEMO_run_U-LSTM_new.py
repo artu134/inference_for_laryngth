@@ -1,6 +1,6 @@
 #!/bin/python
 from data_provider import *
-from lstm_SA_type_full_stable import *
+from lstm_SA_type_full_stable_test import *
 import sys
 
 

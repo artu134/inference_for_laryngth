@@ -7,7 +7,9 @@ import cv2
 from decimal import Decimal
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+from PIL import Image
 import logging
+from scipy.ndimage import binary_erosion
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO, datefmt='%I:%M:%S')
 logger = logging.getLogger("main")
@@ -595,6 +597,23 @@ class LSTM_SA_Tester():
         
         return overlay
 
+    def _image_overlay_opposite(self, image, mask, background_mask=None):
+        if len(image.shape) == 2:  # if grayscale
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        overlay = image.copy()
+        color_list = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]  # Change colors for different masks
+    
+        mask = mask.astype(bool)
+        border = mask ^ binary_erosion(mask).astype(bool)  # Finding the border of the mask
+
+        # Only apply overlay if border is correctly formed
+        if np.any(border):
+            overlay[border] = (255, 0, 0)  # Overlaying with different color for each mask
+        else:
+            print(f"Skipping overlay for mask due to incorrectly formed border.")
+
+        return overlay
+    
     def _save_coordinates(self, coords, batch_nr, image_nr):
         path = self._output_path + "coordinates_batch_{}_image_{}.txt".format(batch_nr, image_nr)
         with open(path, "w") as file:
@@ -618,6 +637,15 @@ class LSTM_SA_Tester():
             object_coordinates.append((x, y, w, h))
             
         return object_coordinates
+
+    def get_predicted_class_for_mask(self, out_p, mask_index):
+        for j in range(len(out_p)):  # For each image in the batch
+            # Get the probabilities for the given mask for all pixels
+            mask_probs = out_p[j][0][:, :, mask_index]
+            # Get the class with the highest frequency of being the most probable
+            predicted_class = np.bincount(np.argmax(mask_probs, axis=-1).flatten()).argmax()
+            print(f"Mask {mask_index} in Image {j} has predicted class: {predicted_class}")
+
     
     def test(self, batch_size=1, save_validate_image=False):
         
@@ -647,23 +675,29 @@ class LSTM_SA_Tester():
                 out_p, out_ppe, out_pmiou, out_ppa, out_pmpa, out_pd = out
 
                 # Adding visualization here
+                print("Shape of out_p: ", np.shape(out_p))
+                # class_predictions = np.argmax(out_p, axis=1)
+                # print("Sample values from out_p: ", class_predictions)  # Print the first 2 elements
+                # for mask_index in range(out_p.shape[-1]):
+                #     self.get_predicted_class_for_mask(out_p, mask_index)
+
                 for j in range(len(out_p)):  # For each image in the batch
-                    print(out_p.shape)
-                    mask = np.argmax(out_p[j], axis=-1)
-                    coords = self.get_object_coordinates(mask)
 
-                    fig, ax = plt.subplots(1, 1)
-                    if x[j].shape[-1] == 1:  # if grayscale
-                        ax.imshow(np.squeeze(x[j][0]), cmap='gray')
-                    else:  # if RGB
-                        ax.imshow(x[j][0])
+                    for k in range(out_p[j][0].shape[-1]):  # For each mask in the image
+                        mask = out_p[j][0][..., k]
+                        coords = self.get_object_coordinates(mask)
 
-                    for coord in coords:
-                        rect = patches.Rectangle((coord[0], coord[1]), coord[2], coord[3], linewidth=1, edgecolor='r', facecolor='none')
-                        ax.add_patch(rect)
-                    
-                    plt.savefig(f"{self._output_path}image_batch_{i}_idx_{j}.png")  # Saving the figure
-                    plt.close(fig)  # Close the figure to free up memory
+                        # Create an overlay image
+                        original_with_overlay = self._image_overlay_opposite(x[j][0], mask, background_mask=None)
+
+                        for coord in coords:
+                            # Draw bounding boxes on the overlay image
+                            cv2.rectangle(original_with_overlay, (coord[0], coord[1]), 
+                                        (coord[0] + coord[2], coord[1] + coord[3]), 
+                                        (0, 255, 0), 2)
+
+                        # Save the overlay image
+                        Image.fromarray(original_with_overlay).save(f"{self._output_path}image_batch_{i}_idx_{j}_mask_{k}.png")
 
                 _runtime_t5 = time.time() # runtime
                 
