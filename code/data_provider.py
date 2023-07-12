@@ -132,7 +132,7 @@ class SequenceDataProvider(DataProvider):
     def __init__(self, 
                  path,
                  sequence_length,
-                 image_suffix="_rgb.png", 
+                 image_suffix=".jpg", 
                  label_suffix="_mask.png",
                  nclasses=3,
                  background=False,

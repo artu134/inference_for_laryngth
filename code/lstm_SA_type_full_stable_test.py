@@ -638,13 +638,18 @@ class LSTM_SA_Tester():
             
         return object_coordinates
 
-    def get_predicted_class_for_mask(self, out_p, mask_index):
+    def get_predicted_class_for_masks(self, out_p):
         for j in range(len(out_p)):  # For each image in the batch
-            # Get the probabilities for the given mask for all pixels
-            mask_probs = out_p[j][0][:, :, mask_index]
-            # Get the class with the highest frequency of being the most probable
-            predicted_class = np.bincount(np.argmax(mask_probs, axis=-1).flatten()).argmax()
-            print(f"Mask {mask_index} in Image {j} has predicted class: {predicted_class}")
+            for k in range(out_p[j].shape[0]):  # For each predicted map in the image
+                # Aggregate the softmax maps into one map
+                aggregated_map = np.argmax(out_p[j], axis=-1)
+                # Get the class with the highest frequency of being the most probable
+                predicted_class = np.bincount(aggregated_map.flatten()).argmax()
+                print(f"Prediction {k} in Image {j} has predicted class: {predicted_class}")
+                # Check if the predicted class is the background class (assuming it's class 0)
+                if predicted_class == 0:
+                    print(f"Prediction {k} in Image {j} does not contain a glottis.")
+
 
     
     def test(self, batch_size=1, save_validate_image=False):
@@ -662,11 +667,14 @@ class LSTM_SA_Tester():
             
             _runtime_t2 = time.time() # runtime
             print(f"dataset length: {self._dataprovider.dataset_length()}; Batch size : {batch_size}")
-            for i in range(2):
+            for i in range(3):
                 #range(self._dataprovider.dataset_length() // batch_size)
                 _runtime_t3 = time.time() # runtime
                 
                 x, y = self._dataprovider.next_batch(batch_size)
+                
+                logging.info("X shape: {}".format(x.shape))
+                logging.info("Y shape: {}".format(y.shape))
                 
                 _runtime_t4 = time.time() # runtime
                 
@@ -676,10 +684,7 @@ class LSTM_SA_Tester():
 
                 # Adding visualization here
                 print("Shape of out_p: ", np.shape(out_p))
-                # class_predictions = np.argmax(out_p, axis=1)
-                # print("Sample values from out_p: ", class_predictions)  # Print the first 2 elements
-                # for mask_index in range(out_p.shape[-1]):
-                #     self.get_predicted_class_for_mask(out_p, mask_index)
+                #self.get_predicted_class_for_masks(out_p)
 
                 for j in range(len(out_p)):  # For each image in the batch
 

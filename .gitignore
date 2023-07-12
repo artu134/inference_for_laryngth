@@ -3,3 +3,6 @@ code/Training_Models.zip
 *.txt
 *.mat 
 *.pyc 
+*.jpg
+*.zip
+*xlsx
