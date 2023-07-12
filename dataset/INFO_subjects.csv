@@ -1,0 +1,131 @@
+dataset,ID_from,ID_to,diagnosis,sex,age
+train,1,100,healthy,m,26
+train,101,200,healthy,m,23
+train,201,300,healthy,m,27
+train,301,400,healthy,f,23
+train,401,500,healthy,f,26
+train,501,600,healthy,m,47
+train,601,700,healthy,f,31
+train,701,800,healthy,f,20
+train,801,900,healthy,f,21
+train,901,1000,healthy,m,22
+train,1001,1100,healthy,f,27
+train,1101,1200,healthy,f,28
+train,1201,1300,healthy,f,23
+train,1301,1400,healthy,f,26
+train,1401,1500,healthy,f,0
+train,1501,1600,healthy,f,25
+train,1601,1700,healthy,f,45
+train,1701,1800,healthy,f,35
+train,1801,1900,healthy,f,29
+train,1901,2000,healthy,f,20
+train,2001,2100,healthy,f,28
+train,2101,2200,healthy,m,25
+train,2201,2300,healthy,f,36
+train,2301,2400,healthy,f,29
+train,2401,2500,healthy,f,27
+train,2501,2600,healthy,f,23
+train,2601,2700,healthy,f,20
+train,2701,2800,healthy,f,21
+train,2801,2900,healthy,m,22
+train,2901,3000,healthy,f,21
+train,3001,3100,healthy,f,21
+train,3101,3200,healthy,m,35
+train,3201,3300,healthy,m,80
+train,3301,3400,healthy,f,22
+train,3401,3500,healthy,m,28
+train,3501,3600,healthy,m,28
+train,3601,3700,healthy,m,19
+train,3701,3800,healthy,f,61
+train,3801,3900,healthy,m,47
+train,3901,4000,healthy,m,25
+train,4001,4100,healthy,m,41
+train,4101,4200,healthy,f,69
+train,4201,4300,healthy,f,41
+train,4301,4400,healthy,m,22
+train,4401,4500,healthy,f,41
+train,4501,4600,healthy,m,33
+train,4601,4700,healthy,f,0
+train,4701,4800,healthy,f,47
+train,4801,4900,healthy,m,34
+train,4901,5000,healthy,f,21
+train,5001,5100,functional dysphonia,m,62
+train,5101,5200,functional dysphonia,f,71
+train,5201,5300,functional dysphonia,m,37
+train,5301,5400,functional dysphonia,f,71
+train,5401,5500,functional dysphonia,f,48
+train,5501,5600,functional dysphonia,f,56
+train,5601,5700,functional dysphonia,m,50
+train,5701,5800,functional dysphonia,f,81
+train,5801,5900,functional dysphonia,f,61
+train,5901,6000,functional dysphonia,m,30
+train,6001,6100,functional dysphonia,m,50
+train,6101,6200,paresis,f,70
+train,6201,6300,paresis,m,52
+train,6301,6400,paresis,m,71
+train,6401,6500,paresis,f,69
+train,6501,6600,paresis,f,54
+train,6601,6700,paresis,f,48
+train,6701,6800,paresis,m,29
+train,6801,6900,paresis,f,48
+train,6901,7000,paresis,f,39
+train,7001,7100,paresis,f,62
+train,7101,7200,paresis,m,57
+train,7201,7300,paresis,m,48
+train,7301,7400,paresis,f,78
+train,7401,7500,paresis,f,74
+train,7501,7600,polyp,m,46
+train,7601,7700,polyp,m,49
+train,7701,7800,polyp,m,52
+train,7801,7900,polyp,f,23
+train,7901,8000,polyp,m,22
+train,8001,8100,polyp,f,43
+train,8101,8200,polyp,f,45
+train,8201,8300,polyp,m,27
+train,8301,8400,polyp,m,69
+train,8401,8500,polyp,m,66
+train,8501,8600,polyp,f,54
+train,8601,8700,polyp,f,61
+train,8701,8800,polyp,m,21
+train,8801,8900,polyp,m,47
+train,8901,9000,polyp,f,49
+train,9001,9100,polyp,m,53
+train,9101,9200,carcinoma,f,61
+train,9201,9300,carcinoma,m,59
+train,9301,9400,carcinoma,m,69
+train,9401,9500,carcinoma,m,68
+train,9501,9600,carcinoma,m,62
+train,9601,9700,carcinoma,m,75
+train,9701,9800,carcinoma,f,78
+train,9801,9900,carcinoma,m,55
+train,9901,10000,carcinoma,f,61
+validation,1,100,healthy,f,25
+validation,101,200,healthy,m,23
+validation,201,300,healthy,f,21
+validation,301,400,functional dysphonia,m,70
+validation,401,500,functional dysphonia,f,75
+validation,501,600,functional dysphonia,m,44
+validation,601,700,paresis,m,64
+validation,701,800,paresis,m,42
+validation,801,900,paresis,m,26
+validation,901,1000,polyp,f,35
+validation,1001,1100,polyp,f,38
+validation,1101,1200,polyp,m,43
+validation,1201,1300,carcinoma,m,74
+validation,1301,1400,carcinoma,f,48
+validation,1401,1500,carcinoma,m,80
+test,1,100,healthy,f,45
+test,101,200,healthy,f,26
+test,201,300,healthy,m,36
+test,301,400,functional dysphonia,f,73
+test,401,500,functional dysphonia,m,46
+test,501,600,functional dysphonia,m,27
+test,601,700,paresis,f,54
+test,701,800,paresis,f,63
+test,801,900,paresis,f,58
+test,901,1000,polyp,f,20
+test,1001,1100,polyp,f,22
+test,1101,1200,polyp,m,75
+test,1201,1300,carcinoma,f,72
+test,1301,1400,carcinoma,m,76
+test,1401,1500,carcinoma,m,54
