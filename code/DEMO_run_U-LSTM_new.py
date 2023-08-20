@@ -29,7 +29,7 @@ if __name__ == '__main__':
     nm="LSTMfull_rgb_nat"  # name                      
     verb=False          # verbose
     md=30000            # model
-    imgsuf=".jpg"   # image_suffix              
+    imgsuf="_rgb.png"   # image_suffix              
     labsuf="_mask.png"  # label_suffix
     bg=True             # background
     bs=10               # batch_size
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     # define paths to the dataset
     PATH_tain="../dataset/train/*.png"
     PATH_valid="../dataset/val/*.png"
-    PATH_test="../dataset/out_frames/*.jpg"
+    PATH_test="../dataset/test/*.png"
 
     # If the path to an existing model is provided, the NN will be initialized with these weights, i.e. to continue training.
     LOAD_MODEL=None     # default: None  

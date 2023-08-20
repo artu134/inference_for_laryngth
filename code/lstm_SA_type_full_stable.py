@@ -634,7 +634,7 @@ class LSTM_SA_Tester():
             
             _runtime_t2 = time.time() # runtime
             print(f"dataset length: {self._dataprovider.dataset_length()}; Batch size : {batch_size}")
-            for i in range(2):
+            for i in range(self._dataprovider.dataset_length() // batch_size):
                 #range(self._dataprovider.dataset_length() // batch_size)
                 _runtime_t3 = time.time() # runtime
                 
