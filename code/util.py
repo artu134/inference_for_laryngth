@@ -4,7 +4,6 @@ from PIL import Image
 import tensorflow as tf
 import os
 from skimage import segmentation
-from skimage import segmentation
 
 import logging
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO, datefmt='%I:%M:%S')
